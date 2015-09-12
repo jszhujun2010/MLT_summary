@@ -27,7 +27,6 @@ class PLA(object):
         only works for data that is linear separable.
         lr: learning rate
         """
-#        print self.feature.shape, self.weight.shape
         flag = False
         while not flag:
             no_error = True
@@ -99,8 +98,6 @@ def process_data():
     test = np.loadtxt("F:\File_jszhujun\MOOC\MLT\ML_NTU\Fhw1_18_test.dat")
     pla = PLA(train[:, 0:4], train[:, 4])
     pla.greedy_learn(9)
-#    pla.basic_learn(0.1)
-#    print "n_iteration:", pla.n_iteration
     return pla.process_test(test[:, 0:4], test[:, 4])
 
 if __name__ == "__main__":
