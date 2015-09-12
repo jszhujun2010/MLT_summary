@@ -23,7 +23,7 @@ class PLA(object):
         
     def basic_learn(self, lr):
         """
-        basic PLA applies traditional gradient descent algorithm,
+        basic PLA applies some kind of stochastic gradient descent algorithm,
         only works for data that is linear separable.
         lr: learning rate
         """
