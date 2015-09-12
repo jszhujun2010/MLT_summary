@@ -14,6 +14,7 @@ class PLA(object):
         label is a n_object numpy array
         """
         self.ori_feature = feature
+        #new feature as x_0, easily forget
         self.feature = np.insert(feature, 0, 1, axis=1)
         self.label = label
         self.n_object = feature.shape[0]
@@ -94,6 +95,9 @@ def sign(x):
         return np.sign(x)
         
 def process_data():
+    """
+    hard coded test program, for problem set only
+    """
     train = np.loadtxt("F:\File_jszhujun\MOOC\MLT\ML_NTU\Fhw1_18_train.dat")
     test = np.loadtxt("F:\File_jszhujun\MOOC\MLT\ML_NTU\Fhw1_18_test.dat")
     pla = PLA(train[:, 0:4], train[:, 4])
