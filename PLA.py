@@ -48,21 +48,20 @@ class PLA(object):
         """
         self.n_iteration = n
         i = 0
-        w_temp = self.weight
+        w_temp = self.weight[:]
         test = Test(self.ori_feature, self.label)
         test.test(w_temp)
         errors = test.n_error
         while i < n:
             random = np.random.randint(0, self.n_object)
-            if sign(self.weight.dot(self.feature[random])) != self.label[random]:
+            if sign(w_temp.dot(self.feature[random])) != self.label[random]:
                 i += 1
                 w_temp += self.label[random] * self.feature[random]
                 test = Test(self.ori_feature, self.label)
                 test.test(w_temp)
                 if test.n_error < errors:
-                    print i
                     errors = test.n_error
-                    self.weight = w_temp
+                    self.weight = w_temp[:]
         return
                 
     def process_test(self, test_feature, test_label):
@@ -101,11 +100,12 @@ def process_data():
     train = np.loadtxt("F:\File_jszhujun\MOOC\MLT\ML_NTU\Fhw1_18_train.dat")
     test = np.loadtxt("F:\File_jszhujun\MOOC\MLT\ML_NTU\Fhw1_18_test.dat")
     pla = PLA(train[:, 0:4], train[:, 4])
-    pla.greedy_learn(9)
+    pla.greedy_learn(1000)
     return pla.process_test(test[:, 0:4], test[:, 4])
 
 if __name__ == "__main__":
     print "error rate:", process_data()
+
 
     
     
